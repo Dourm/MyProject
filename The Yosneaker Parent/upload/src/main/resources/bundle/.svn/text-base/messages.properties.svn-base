@@ -1,0 +1,18 @@
+statusMessage.DB.error=The database connection error!
+statusMessage.parameter.isNull=The parameter is null!
+statusMessage.parameter.formatError=Some parameters are null or empty!
+statusMessage.error=The parameter format error or the database connection error!
+statusMessage.skill.delete.error=At a lower level, can't delete exist depend on\!
+statusMessage.failed=operation failed!
+statusMessage.success=operation completed successfully\!
+statusMessage.db.primarykey.exist=the value of primarykey is exist\!
+
+#test url
+#wwx.pathurl=http://localhost:8080/amp
+#wwx.passport.pathurl=http://localhost:8080/amp
+#wwx.shop.pathurl=http://localhost:8080/amp
+
+#real url
+#wwx.pathurl=http://www.wanwuxia.com/
+#wwx.passport.pathurl=http://www.wanwuxia.com/
+#wwx.shop.pathurl=http://www.wanwuxia.com/

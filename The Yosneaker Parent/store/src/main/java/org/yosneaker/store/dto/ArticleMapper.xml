@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.yosneaker.store.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="org.yosneaker.store.dto.Article" >
+    <id column="article_id" property="articleId" jdbcType="INTEGER" />
+    <result column="article_title" property="articleTitle" jdbcType="VARCHAR" />
+    <result column="article_description" property="articleDescription" jdbcType="VARCHAR" />
+    <result column="article_comment" property="articleComment" jdbcType="VARCHAR" />
+    <result column="article_level" property="articleLevel" jdbcType="INTEGER" />
+    <result column="article_images" property="articleImages" jdbcType="VARCHAR" />
+    <result column="article_author_id" property="articleAuthorId" jdbcType="INTEGER" />
+    <result column="article_create_time" property="articleCreateTime" jdbcType="TIMESTAMP" />
+    <result column="article_read_count" property="articleReadCount" jdbcType="INTEGER" />
+    <result column="article_comment_count" property="articleCommentCount" jdbcType="INTEGER" />
+    <result column="article_comment_like_count" property="articleCommentLikeCount" jdbcType="INTEGER" />
+    <result column="article_last_modify" property="articleLastModify" jdbcType="TIMESTAMP" />
+    <result column="article_trademark_id" property="articleTrademarkId" jdbcType="INTEGER" />
+    <result column="article_model_id" property="articleModelId" jdbcType="INTEGER" />
+ 	 <collection property="items" ofType="org.yosneaker.store.dto.ArticleItem">  
+            <!-- id用于定义主表的唯一标识，是从表识别主表主键的唯一标识，column是结果集对应的字段名 -->  
+            <id property="itemId" column="item_id" />  
+            <!-- result是普通属性，其他解释同上 -->  
+            <result property="name" column="name" />  
+        </collection>  
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    article_id, article_title, article_description, article_comment, article_level, article_images, 
+    article_author_id, article_create_time, article_read_count, article_comment_count, 
+    article_comment_like_count, article_last_modify, article_trademark_id, article_model_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.yosneaker.store.dto.ArticleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sneaker_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sneaker_article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sneaker_article
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.yosneaker.store.dto.ArticleExample" >
+    delete from sneaker_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.yosneaker.store.dto.Article" useGeneratedKeys="true" keyProperty="articleId">
+    insert into sneaker_article (article_id, article_title, article_description, 
+      article_comment, article_level, article_images, 
+      article_author_id, article_create_time, article_read_count, 
+      article_comment_count, article_comment_like_count, 
+      article_last_modify, article_trademark_id, 
+      article_model_id)
+    values (#{articleId,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR}, #{articleDescription,jdbcType=VARCHAR}, 
+      #{articleComment,jdbcType=VARCHAR}, #{articleLevel,jdbcType=INTEGER}, #{articleImages,jdbcType=VARCHAR}, 
+      #{articleAuthorId,jdbcType=INTEGER}, #{articleCreateTime,jdbcType=TIMESTAMP}, #{articleReadCount,jdbcType=INTEGER}, 
+      #{articleCommentCount,jdbcType=INTEGER}, #{articleCommentLikeCount,jdbcType=INTEGER}, 
+      #{articleLastModify,jdbcType=TIMESTAMP}, #{articleTrademarkId,jdbcType=INTEGER}, 
+      #{articleModelId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="org.yosneaker.store.dto.Article" useGeneratedKeys="true" keyProperty="articleId">
+    insert into sneaker_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        article_id,
+      </if>
+      <if test="articleTitle != null" >
+        article_title,
+      </if>
+      <if test="articleDescription != null" >
+        article_description,
+      </if>
+      <if test="articleComment != null" >
+        article_comment,
+      </if>
+      <if test="articleLevel != null" >
+        article_level,
+      </if>
+      <if test="articleImages != null" >
+        article_images,
+      </if>
+      <if test="articleAuthorId != null" >
+        article_author_id,
+      </if>
+      <if test="articleCreateTime != null" >
+        article_create_time,
+      </if>
+      <if test="articleReadCount != null" >
+        article_read_count,
+      </if>
+      <if test="articleCommentCount != null" >
+        article_comment_count,
+      </if>
+      <if test="articleCommentLikeCount != null" >
+        article_comment_like_count,
+      </if>
+      <if test="articleLastModify != null" >
+        article_last_modify,
+      </if>
+      <if test="articleTrademarkId != null" >
+        article_trademark_id,
+      </if>
+      <if test="articleModelId != null" >
+        article_model_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleId != null" >
+        #{articleId,jdbcType=INTEGER},
+      </if>
+      <if test="articleTitle != null" >
+        #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleDescription != null" >
+        #{articleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="articleComment != null" >
+        #{articleComment,jdbcType=VARCHAR},
+      </if>
+      <if test="articleLevel != null" >
+        #{articleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="articleImages != null" >
+        #{articleImages,jdbcType=VARCHAR},
+      </if>
+      <if test="articleAuthorId != null" >
+        #{articleAuthorId,jdbcType=INTEGER},
+      </if>
+      <if test="articleCreateTime != null" >
+        #{articleCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleReadCount != null" >
+        #{articleReadCount,jdbcType=INTEGER},
+      </if>
+      <if test="articleCommentCount != null" >
+        #{articleCommentCount,jdbcType=INTEGER},
+      </if>
+      <if test="articleCommentLikeCount != null" >
+        #{articleCommentLikeCount,jdbcType=INTEGER},
+      </if>
+      <if test="articleLastModify != null" >
+        #{articleLastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleTrademarkId != null" >
+        #{articleTrademarkId,jdbcType=INTEGER},
+      </if>
+      <if test="articleModelId != null" >
+        #{articleModelId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.yosneaker.store.dto.ArticleExample" resultType="java.lang.Integer" >
+    select count(*) from sneaker_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sneaker_article
+    <set >
+      <if test="record.articleId != null" >
+        article_id = #{record.articleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleTitle != null" >
+        article_title = #{record.articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.articleDescription != null" >
+        article_description = #{record.articleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.articleComment != null" >
+        article_comment = #{record.articleComment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.articleLevel != null" >
+        article_level = #{record.articleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleImages != null" >
+        article_images = #{record.articleImages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.articleAuthorId != null" >
+        article_author_id = #{record.articleAuthorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleCreateTime != null" >
+        article_create_time = #{record.articleCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.articleReadCount != null" >
+        article_read_count = #{record.articleReadCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleCommentCount != null" >
+        article_comment_count = #{record.articleCommentCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleCommentLikeCount != null" >
+        article_comment_like_count = #{record.articleCommentLikeCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleLastModify != null" >
+        article_last_modify = #{record.articleLastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.articleTrademarkId != null" >
+        article_trademark_id = #{record.articleTrademarkId,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleModelId != null" >
+        article_model_id = #{record.articleModelId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sneaker_article
+    set article_id = #{record.articleId,jdbcType=INTEGER},
+      article_title = #{record.articleTitle,jdbcType=VARCHAR},
+      article_description = #{record.articleDescription,jdbcType=VARCHAR},
+      article_comment = #{record.articleComment,jdbcType=VARCHAR},
+      article_level = #{record.articleLevel,jdbcType=INTEGER},
+      article_images = #{record.articleImages,jdbcType=VARCHAR},
+      article_author_id = #{record.articleAuthorId,jdbcType=INTEGER},
+      article_create_time = #{record.articleCreateTime,jdbcType=TIMESTAMP},
+      article_read_count = #{record.articleReadCount,jdbcType=INTEGER},
+      article_comment_count = #{record.articleCommentCount,jdbcType=INTEGER},
+      article_comment_like_count = #{record.articleCommentLikeCount,jdbcType=INTEGER},
+      article_last_modify = #{record.articleLastModify,jdbcType=TIMESTAMP},
+      article_trademark_id = #{record.articleTrademarkId,jdbcType=INTEGER},
+      article_model_id = #{record.articleModelId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yosneaker.store.dto.Article" >
+    update sneaker_article
+    <set >
+      <if test="articleTitle != null" >
+        article_title = #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleDescription != null" >
+        article_description = #{articleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="articleComment != null" >
+        article_comment = #{articleComment,jdbcType=VARCHAR},
+      </if>
+      <if test="articleLevel != null" >
+        article_level = #{articleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="articleImages != null" >
+        article_images = #{articleImages,jdbcType=VARCHAR},
+      </if>
+      <if test="articleAuthorId != null" >
+        article_author_id = #{articleAuthorId,jdbcType=INTEGER},
+      </if>
+      <if test="articleCreateTime != null" >
+        article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleReadCount != null" >
+        article_read_count = #{articleReadCount,jdbcType=INTEGER},
+      </if>
+      <if test="articleCommentCount != null" >
+        article_comment_count = #{articleCommentCount,jdbcType=INTEGER},
+      </if>
+      <if test="articleCommentLikeCount != null" >
+        article_comment_like_count = #{articleCommentLikeCount,jdbcType=INTEGER},
+      </if>
+      <if test="articleLastModify != null" >
+        article_last_modify = #{articleLastModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleTrademarkId != null" >
+        article_trademark_id = #{articleTrademarkId,jdbcType=INTEGER},
+      </if>
+      <if test="articleModelId != null" >
+        article_model_id = #{articleModelId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.yosneaker.store.dto.Article" >
+    update sneaker_article
+    set article_title = #{articleTitle,jdbcType=VARCHAR},
+      article_description = #{articleDescription,jdbcType=VARCHAR},
+      article_comment = #{articleComment,jdbcType=VARCHAR},
+      article_level = #{articleLevel,jdbcType=INTEGER},
+      article_images = #{articleImages,jdbcType=VARCHAR},
+      article_author_id = #{articleAuthorId,jdbcType=INTEGER},
+      article_create_time = #{articleCreateTime,jdbcType=TIMESTAMP},
+      article_read_count = #{articleReadCount,jdbcType=INTEGER},
+      article_comment_count = #{articleCommentCount,jdbcType=INTEGER},
+      article_comment_like_count = #{articleCommentLikeCount,jdbcType=INTEGER},
+      article_last_modify = #{articleLastModify,jdbcType=TIMESTAMP},
+      article_trademark_id = #{articleTrademarkId,jdbcType=INTEGER},
+      article_model_id = #{articleModelId,jdbcType=INTEGER}
+    where article_id = #{articleId,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlSuffix" >
+    <if test="page != null" >
+      limit #{page.start} , #{page.rows}
+    </if>
+  </sql>
+</mapper>

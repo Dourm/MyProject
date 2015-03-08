@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.yosneaker.store.dao.ArticleItemMapper" >
+  <resultMap id="BaseResultMap" type="org.yosneaker.store.dto.ArticleItem" >
+    <id column="item_id" property="itemId" jdbcType="INTEGER" />
+    <result column="item_title" property="itemTitle" jdbcType="VARCHAR" />
+    <result column="item_level" property="itemLevel" jdbcType="INTEGER" />
+    <result column="item_content" property="itemContent" jdbcType="VARCHAR" />
+    <result column="item_images" property="itemImages" jdbcType="VARCHAR" />
+    <result column="item_article_id" property="itemArticleId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    item_id, item_title, item_level, item_content, item_images, item_article_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.yosneaker.store.dto.ArticleItemExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sneaker_article_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sneaker_article_item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sneaker_article_item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.yosneaker.store.dto.ArticleItemExample" >
+    delete from sneaker_article_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.yosneaker.store.dto.ArticleItem" useGeneratedKeys="true" keyProperty="itemId">
+    insert into sneaker_article_item (item_id, item_title, item_level, 
+      item_content, item_images, item_article_id
+      )
+    values (#{itemId,jdbcType=INTEGER}, #{itemTitle,jdbcType=VARCHAR}, #{itemLevel,jdbcType=INTEGER}, 
+      #{itemContent,jdbcType=VARCHAR}, #{itemImages,jdbcType=VARCHAR}, #{itemArticleId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.yosneaker.store.dto.ArticleItem" useGeneratedKeys="true" keyProperty="itemId">
+    insert into sneaker_article_item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="itemTitle != null" >
+        item_title,
+      </if>
+      <if test="itemLevel != null" >
+        item_level,
+      </if>
+      <if test="itemContent != null" >
+        item_content,
+      </if>
+      <if test="itemImages != null" >
+        item_images,
+      </if>
+      <if test="itemArticleId != null" >
+        item_article_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemId != null" >
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="itemTitle != null" >
+        #{itemTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="itemLevel != null" >
+        #{itemLevel,jdbcType=INTEGER},
+      </if>
+      <if test="itemContent != null" >
+        #{itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="itemImages != null" >
+        #{itemImages,jdbcType=VARCHAR},
+      </if>
+      <if test="itemArticleId != null" >
+        #{itemArticleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.yosneaker.store.dto.ArticleItemExample" resultType="java.lang.Integer" >
+    select count(*) from sneaker_article_item
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sneaker_article_item
+    <set >
+      <if test="record.itemId != null" >
+        item_id = #{record.itemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemTitle != null" >
+        item_title = #{record.itemTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemLevel != null" >
+        item_level = #{record.itemLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemContent != null" >
+        item_content = #{record.itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemImages != null" >
+        item_images = #{record.itemImages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemArticleId != null" >
+        item_article_id = #{record.itemArticleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sneaker_article_item
+    set item_id = #{record.itemId,jdbcType=INTEGER},
+      item_title = #{record.itemTitle,jdbcType=VARCHAR},
+      item_level = #{record.itemLevel,jdbcType=INTEGER},
+      item_content = #{record.itemContent,jdbcType=VARCHAR},
+      item_images = #{record.itemImages,jdbcType=VARCHAR},
+      item_article_id = #{record.itemArticleId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yosneaker.store.dto.ArticleItem" >
+    update sneaker_article_item
+    <set >
+      <if test="itemTitle != null" >
+        item_title = #{itemTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="itemLevel != null" >
+        item_level = #{itemLevel,jdbcType=INTEGER},
+      </if>
+      <if test="itemContent != null" >
+        item_content = #{itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="itemImages != null" >
+        item_images = #{itemImages,jdbcType=VARCHAR},
+      </if>
+      <if test="itemArticleId != null" >
+        item_article_id = #{itemArticleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.yosneaker.store.dto.ArticleItem" >
+    update sneaker_article_item
+    set item_title = #{itemTitle,jdbcType=VARCHAR},
+      item_level = #{itemLevel,jdbcType=INTEGER},
+      item_content = #{itemContent,jdbcType=VARCHAR},
+      item_images = #{itemImages,jdbcType=VARCHAR},
+      item_article_id = #{itemArticleId,jdbcType=INTEGER}
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlSuffix" >
+    <if test="page != null" >
+      limit #{page.start} , #{page.rows}
+    </if>
+  </sql>
+</mapper>

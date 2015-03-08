@@ -1,0 +1,32 @@
+<!--#include virtual="/admin/inc/head.shtml"-->
+<form action="#" id="query_form">
+<div  class="filter-bar" >
+	<table>
+	<tr>
+		<th>id:</th>
+		<td><input type="text" class="i-txt" name="id"  id="id" /></td>
+		
+		<td>
+			<input type="button" value="查询" class="i-btn" style="margin-left: 15px;" onclick="article.search()"/>
+		 	<input type="button" value="重置" class="i-btn" style="margin-left: 15px;" onclick="article.reSearch();"/>
+		</td>
+	</tr>
+	</table>
+	<br/>
+</div>
+</form>
+<table id="site-datagrid" class="easyui-datagrid" title="" 
+            data-options="rownumbers:true,singleSelect:true,fitColumns:true,url:'/admin/article',pagination:true,toolbar:'#siteTb'">
+     <thead>
+         <tr>       	          	         
+             <th data-options="field:'id',width:50,align:'center',formatter:article.fmtOperate">操作</th>
+         </tr>
+     </thead>
+</table>
+<script type="text/javascript" src="/admin/js/Article/Article.js"></script>
+<script type="text/javascript" src="/admin/js/common/common.js"></script>
+<script>
+url="rownumbers:true,singleSelect:true,fitColumns:true,url:'/admin/article',pagination:true,method:'GET',toolbar:'#siteTb'";
+document.getElementById("site-datagrid").setAttribute("data-options",url);
+</script>
+<!--#include virtual="/admin/inc/end.shtml"-->

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<description>连接数据库 </description>
+
+	<!-- 定义受环境影响易变的变量 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<!-- 标准配置 -->
+				<value>classpath:dbconfig/c3p0-config.properties</value>
+				<value>classpath:spring/memcached.properties</value>
+				<value>classpath:dbconfig/redis.properties</value>
+				
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 数据源配置-->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${c3p0.driverClass}"></property>  
+	    <property name="jdbcUrl" value="${c3p0.url}"></property>  
+	    <property name="user" value="${c3p0.user}"></property>  
+	    <property name="password" value="${c3p0.password}"></property>  
+	    <property name="initialPoolSize" value="${c3p0.initialPoolSize}"></property>  
+	    <property name="maxIdleTime" value="${c3p0.maxIdleTime}"></property>  
+	    <property name="maxPoolSize" value="${c3p0.maxPoolSize}"></property>  
+	    <property name="minPoolSize" value="${c3p0.minPoolSize}"></property>  
+	      
+	    <property name="maxStatements" value="${c3p0.maxStatements}" />
+		<property name="maxStatementsPerConnection" value="${c3p0.maxStatementsPerConnection}" />
+		<property name="idleConnectionTestPeriod" value="${c3p0.idleConnectionTestPeriod}" />
+		<property name="autoCommitOnClose" value="${c3p0.autoCommitOnClose}" />
+		<property name="acquireIncrement" value="${c3p0.acquireIncrement}"></property>  
+	    <property name="acquireRetryDelay" value="${c3p0.acquireRetryDelay}"></property>  
+	    <property name="acquireRetryAttempts" value="${c3p0.acquireRetryAttempts}"></property>  
+	    <property name="breakAfterAcquireFailure" value="${c3p0.breakAfterAcquireFailure}"></property>
+	</bean>
+ 
+</beans>
