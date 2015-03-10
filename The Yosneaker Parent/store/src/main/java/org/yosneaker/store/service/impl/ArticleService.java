@@ -12,6 +12,7 @@ import org.yosneaker.store.dao.ArticleItemDao;
 import org.yosneaker.store.dto.Article;
 import org.yosneaker.store.dto.ArticleExample;
 import org.yosneaker.store.dto.ArticleItem;
+import org.yosneaker.store.dto.ArticleItemExample;
 import org.yosneaker.store.service.IArticleService;
 
 
@@ -80,7 +81,12 @@ public class ArticleService implements IArticleService {
 	}
 	@Override
 	public Article getById(Integer id) {
-		return articleDao.selectByPrimaryKey(id);
+		articleDao.updateReadCount(id);
+		Article article =  articleDao.selectByPrimaryKey(id);
+		ArticleItemExample example = new ArticleItemExample();
+		example.createCriteria().andItemArticleIdEqualTo(id);
+		article.setItems(articleItemDao.selectByExample(example));
+		return article;
 	}
 
 	@Override
@@ -100,6 +106,13 @@ public class ArticleService implements IArticleService {
 			flag = flag&&true;
 		}
 		return flag;
+	}
+
+	@Override
+	public int addLikeCount(int id) {
+		articleDao.updateLikeCount(id);
+		Article article =  articleDao.selectByPrimaryKey(id);
+		return article.getArticleCommentLikeCount();
 	}
 	
 	}

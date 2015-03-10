@@ -365,4 +365,19 @@
       limit #{page.start} , #{page.rows}
     </if>
   </sql>
+  
+  
+    <update id="updateReadCount" parameterType="org.yosneaker.store.dto.ArticleExample" >
+    update sneaker_article set article_read_count=article_read_count+1 
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+  
+    <update id="updateLikeCount" parameterType="org.yosneaker.store.dto.ArticleExample" >
+    update sneaker_article set article_comment_like_count=article_comment_like_count+1 
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
 </mapper>

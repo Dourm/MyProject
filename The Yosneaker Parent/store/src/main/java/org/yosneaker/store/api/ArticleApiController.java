@@ -132,4 +132,41 @@ public class ArticleApiController extends BaseController{
 		return state;
 	}
 
+	/**
+	 * 根据id获取详情
+	 * @param record
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}",method=RequestMethod.GET)
+	public @ResponseBody
+	Object update(@RequestBody int id,HttpServletRequest request) {
+		ResponseState state = new ResponseState(false,"");
+		try{			
+			Article articles = articleService.getById(id);
+			return articles;
+		}catch (Exception e) {
+			logger.error("error", e);
+		}
+		return state;
+	}
+	
+	/**
+	 * 喜欢该测评
+	 * @param record
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}/favorite",method=RequestMethod.POST)
+	public @ResponseBody
+	Object like(@RequestBody int id,HttpServletRequest request) {
+		ResponseState state = new ResponseState(false,"");
+		try{			
+			int num = articleService.addLikeCount(id);
+			state.setObj(num);
+		}catch (Exception e) {
+			logger.error("error", e);
+		}
+		return state;
+	}
 }

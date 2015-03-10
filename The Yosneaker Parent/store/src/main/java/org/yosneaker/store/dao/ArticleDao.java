@@ -19,5 +19,17 @@ public class ArticleDao extends SimpleMybatisSupport<Article, Integer, ArticleEx
         return "org.yosneaker.store.dao.ArticleMapper";
     }
 
+	public void updateReadCount(int id) {
+		ArticleExample articleExample = new ArticleExample();
+		articleExample.createCriteria().andArticleIdEqualTo(id);
+		getSqlSession().update(toMybatisStatement("updateReadCount"),articleExample);
+	}
+
+	public void updateLikeCount(int id) {
+		ArticleExample articleExample = new ArticleExample();
+		articleExample.createCriteria().andArticleIdEqualTo(id);
+		getSqlSession().update(toMybatisStatement("updateLikeCount"),articleExample);
+	}
+
 
 }
