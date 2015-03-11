@@ -33,7 +33,7 @@
 	
 		<!-- 国际化支持 -->
 	<util:list id="basenames" value-type="java.lang.String">
-		<value>upload</value>
+		<value>upload_zh_CN</value>
 	</util:list>
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basenames-ref="basenames" />
 	
