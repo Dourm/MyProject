@@ -8,7 +8,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util-2.5.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd"
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
        default-lazy-init="true">
     <context:component-scan base-package="org.yosneaker"/>
     
@@ -26,6 +26,7 @@
 				<entry key="html" value="text/html;charset=utf-8" />
 				<entry key="xml" value="application/xml;charset=utf-8" />
 				<entry key="json" value="application/json;charset=utf-8" />
+				<entry key="*" value="*/*" />
 			</map>
 		</property>
 	</bean>
