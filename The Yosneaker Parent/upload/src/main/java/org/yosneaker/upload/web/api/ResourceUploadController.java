@@ -67,6 +67,8 @@ public class ResourceUploadController {
 	            }  
 				//byte[] imageData = imageService.resizeImage(image.getOriginalFilename(), image.getBytes(), imageGeometry, Gravity.Center);
 				String resourcePath = resourceService.uploadResource(extension,photoimg, metadata);
+				LOGGER.info("upload image path is :"+resourcePath);
+				System.out.println("upload image path is :"+resourcePath);
 				return MessageUtils.success("upload.resources.post.success", resourcePath);
 		        
 			}else{

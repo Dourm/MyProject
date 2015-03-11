@@ -19,6 +19,14 @@ public class Message<T> {
 		this.content = content;
 	}
 
+	public void setType(MessageType type) {
+		this.type = type;
+	}
+
+	public void setContent(T content) {
+		this.content = content;
+	}
+
 	/**
 	 * 获取消息类型。
 	 * 
