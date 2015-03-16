@@ -20,6 +20,7 @@ import org.yosneaker.store.common.Page;
 import org.yosneaker.store.dto.Article;
 import org.yosneaker.store.dto.ArticleExample;
 import org.yosneaker.store.service.IArticleService;
+import org.yosneaker.store.service.ICommentService;
 
 /**
  * 类描述:测评管理
@@ -28,14 +29,16 @@ import org.yosneaker.store.service.IArticleService;
  * @version
  */
 @Controller
-@RequestMapping("/v0.1/articles")
+@RequestMapping("/articles")
 public class ArticleApiController extends BaseController{
 	private final static Logger logger = Logger.getLogger(ArticleApiController.class);
 	
 	@Resource
     IArticleService articleService;//测评管理
+	@Resource
+	ICommentService commentService;//评论管理
 	/**
-	 * 获取测评管理列表
+	 * 获取热门测评列表
 	 * @param record
 	 
 	 
@@ -43,7 +46,7 @@ public class ArticleApiController extends BaseController{
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "",method=RequestMethod.GET)
+	@RequestMapping(value = "/public",method=RequestMethod.GET)
 	public @ResponseBody
 	Object getListPage(Article record,Page page,HttpServletRequest request) {
 		int total = 0;
@@ -168,5 +171,35 @@ public class ArticleApiController extends BaseController{
 			logger.error("error", e);
 		}
 		return state;
+	}
+	
+	
+	/**
+	 * 获取热门测评列表
+	 * @param record
+	 
+	 
+	 * @param page
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/last",method=RequestMethod.GET)
+	public @ResponseBody
+	Object getLastListPage(Page page,HttpServletRequest request) {
+		int total = 0;
+		List<Article> list = new ArrayList<Article>();
+		try{
+			/*	查询条件    */
+			ArticleExample example = new ArticleExample();
+			
+			//统计数量
+			total = articleService.countByExample(example);
+			if(total>0){
+				list = articleService.getList(example);
+			}
+		}catch (Exception e) {
+			logger.error("error", e);
+		}
+		return new ResponseBean<Article>(total,list);
 	}
 }
