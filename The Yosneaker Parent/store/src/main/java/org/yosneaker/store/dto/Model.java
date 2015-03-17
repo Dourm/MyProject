@@ -9,6 +9,8 @@ public class Model {
 
     private Integer brandId;
 
+    private String artNo;
+
     private String modelStory;
 
     public Integer getModelId() {
@@ -41,6 +43,14 @@ public class Model {
 
     public void setBrandId(Integer brandId) {
         this.brandId = brandId;
+    }
+
+    public String getArtNo() {
+        return artNo;
+    }
+
+    public void setArtNo(String artNo) {
+        this.artNo = artNo == null ? null : artNo.trim();
     }
 
     public String getModelStory() {

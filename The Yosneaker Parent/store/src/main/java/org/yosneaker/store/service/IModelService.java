@@ -9,7 +9,7 @@ import org.yosneaker.store.common.Page;
  * 类名称:IModelService<br/>
  * 类描述:型号<br/>
  * 创建人:Rainy<br/>
- * 创建时间:2015-03-12 22:57:32<br/>
+ * 创建时间:2015-03-17 21:52:55<br/>
  * @version
  */
 public interface IModelService {

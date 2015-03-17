@@ -8,7 +8,7 @@ import org.yosneaker.store.common.SimpleMybatisSupport;
 /**
  * 类描述:型号
  * 创建人:Rainy
- * 创建时间:2015-03-12 22:57:32
+ * 创建时间:2015-03-17 21:52:55
  * @version
  */
  

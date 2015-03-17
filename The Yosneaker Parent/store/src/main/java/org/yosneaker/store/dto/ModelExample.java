@@ -2,7 +2,6 @@ package org.yosneaker.store.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.yosneaker.store.common.Page;
 
 public class ModelExample {
@@ -376,73 +375,73 @@ public class ModelExample {
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryIsNull() {
-            addCriterion("model_story is null");
+        public Criteria andArtNoIsNull() {
+            addCriterion("Art_No is null");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryIsNotNull() {
-            addCriterion("model_story is not null");
+        public Criteria andArtNoIsNotNull() {
+            addCriterion("Art_No is not null");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryEqualTo(String value) {
-            addCriterion("model_story =", value, "modelStory");
+        public Criteria andArtNoEqualTo(String value) {
+            addCriterion("Art_No =", value, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryNotEqualTo(String value) {
-            addCriterion("model_story <>", value, "modelStory");
+        public Criteria andArtNoNotEqualTo(String value) {
+            addCriterion("Art_No <>", value, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryGreaterThan(String value) {
-            addCriterion("model_story >", value, "modelStory");
+        public Criteria andArtNoGreaterThan(String value) {
+            addCriterion("Art_No >", value, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryGreaterThanOrEqualTo(String value) {
-            addCriterion("model_story >=", value, "modelStory");
+        public Criteria andArtNoGreaterThanOrEqualTo(String value) {
+            addCriterion("Art_No >=", value, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryLessThan(String value) {
-            addCriterion("model_story <", value, "modelStory");
+        public Criteria andArtNoLessThan(String value) {
+            addCriterion("Art_No <", value, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryLessThanOrEqualTo(String value) {
-            addCriterion("model_story <=", value, "modelStory");
+        public Criteria andArtNoLessThanOrEqualTo(String value) {
+            addCriterion("Art_No <=", value, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryLike(String value) {
-            addCriterion("model_story like", value, "modelStory");
+        public Criteria andArtNoLike(String value) {
+            addCriterion("Art_No like", value, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryNotLike(String value) {
-            addCriterion("model_story not like", value, "modelStory");
+        public Criteria andArtNoNotLike(String value) {
+            addCriterion("Art_No not like", value, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryIn(List<String> values) {
-            addCriterion("model_story in", values, "modelStory");
+        public Criteria andArtNoIn(List<String> values) {
+            addCriterion("Art_No in", values, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryNotIn(List<String> values) {
-            addCriterion("model_story not in", values, "modelStory");
+        public Criteria andArtNoNotIn(List<String> values) {
+            addCriterion("Art_No not in", values, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryBetween(String value1, String value2) {
-            addCriterion("model_story between", value1, value2, "modelStory");
+        public Criteria andArtNoBetween(String value1, String value2) {
+            addCriterion("Art_No between", value1, value2, "artNo");
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryNotBetween(String value1, String value2) {
-            addCriterion("model_story not between", value1, value2, "modelStory");
+        public Criteria andArtNoNotBetween(String value1, String value2) {
+            addCriterion("Art_No not between", value1, value2, "artNo");
             return (Criteria) this;
         }
 
@@ -456,8 +455,8 @@ public class ModelExample {
             return (Criteria) this;
         }
 
-        public Criteria andModelStoryLikeInsensitive(String value) {
-            addCriterion("upper(model_story) like", value.toUpperCase(), "modelStory");
+        public Criteria andArtNoLikeInsensitive(String value) {
+            addCriterion("upper(Art_No) like", value.toUpperCase(), "artNo");
             return (Criteria) this;
         }
     }
