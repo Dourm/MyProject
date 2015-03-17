@@ -1,9 +1,9 @@
 package org.yosneaker.store.service;
 
 import java.util.List;
+
 import org.yosneaker.store.dto.AccountInfo;
 import org.yosneaker.store.dto.AccountInfoExample;
-import org.yosneaker.store.common.Page;
 
 /**
  * 类名称:IAccountInfoService<br/>

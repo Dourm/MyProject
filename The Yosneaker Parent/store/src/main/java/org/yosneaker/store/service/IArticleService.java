@@ -9,7 +9,7 @@ import org.yosneaker.store.dto.ArticleExample;
  * 类名称:IArticleService<br/>
  * 类描述:测评<br/>
  * 创建人:Rainy<br/>
- * 创建时间:2015-03-08 20:13:34<br/>
+ * 创建时间:2015-03-17 23:23:46<br/>
  * @version
  */
 public interface IArticleService {
@@ -57,16 +57,4 @@ public interface IArticleService {
 	 */
 	int countByExample(ArticleExample example);
 	
-	public  boolean insertArticleAndItems(Article article);
-	
-	/**
-	 * 喜欢
-	* @Title: addLikeCount
-	* @Description: TODO
-	* @param @param id
-	* @param @return
-	* @return int
-	* @throws
-	 */
-	public int addLikeCount(int id);
 }

@@ -1,13 +1,14 @@
 package org.yosneaker.store.dao;
 
 import org.springframework.stereotype.Repository;
-import org.yosneaker.store.common.SimpleMybatisSupport;
+
 import org.yosneaker.store.dto.Article;
 import org.yosneaker.store.dto.ArticleExample;
+import org.yosneaker.store.common.SimpleMybatisSupport;
 /**
  * 类描述:测评
  * 创建人:Rainy
- * 创建时间:2015-03-08 20:13:34
+ * 创建时间:2015-03-17 23:23:46
  * @version
  */
  
@@ -30,6 +31,5 @@ public class ArticleDao extends SimpleMybatisSupport<Article, Integer, ArticleEx
 		articleExample.createCriteria().andArticleIdEqualTo(id);
 		getSqlSession().update(toMybatisStatement("updateLikeCount"),articleExample);
 	}
-
 
 }

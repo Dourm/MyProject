@@ -1,9 +1,9 @@
 package org.yosneaker.store.service;
 
 import java.util.List;
+
 import org.yosneaker.store.dto.Brand;
 import org.yosneaker.store.dto.BrandExample;
-import org.yosneaker.store.common.Page;
 
 /**
  * 类名称:IBrandService<br/>

@@ -1,35 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.yosneaker.store.dao.ModelMapper">
-  <resultMap id="BaseResultMap" type="org.yosneaker.store.dto.Model">
-    <id column="model_id" jdbcType="INTEGER" property="modelId" />
-    <result column="model_name" jdbcType="VARCHAR" property="modelName" />
-    <result column="model_series" jdbcType="VARCHAR" property="modelSeries" />
-    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
-    <result column="Art_No" jdbcType="VARCHAR" property="artNo" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.yosneaker.store.dao.ModelMapper" >
+  <resultMap id="BaseResultMap" type="org.yosneaker.store.dto.Model" >
+    <id column="model_id" property="modelId" jdbcType="INTEGER" />
+    <result column="model_name" property="modelName" jdbcType="VARCHAR" />
+    <result column="model_series" property="modelSeries" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="Art_No" property="artNo" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.yosneaker.store.dto.Model">
-    <result column="model_story" jdbcType="LONGVARCHAR" property="modelStory" />
+  <resultMap id="ResultMapWithBLOBs" type="org.yosneaker.store.dto.Model" extends="BaseResultMap" >
+    <result column="model_story" property="modelStory" jdbcType="LONGVARCHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -40,25 +40,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue">
+                <when test="criterion.singleValue" >
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue">
+                <when test="criterion.betweenValue" >
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue">
+                <when test="criterion.listValue" >
                   and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
                     #{listItem}
                   </foreach>
                 </when>
@@ -69,44 +69,44 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     model_id, model_name, model_series, brand_id, Art_No
   </sql>
-  <sql id="Blob_Column_List">
+  <sql id="Blob_Column_List" >
     model_story
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="org.yosneaker.store.dto.ModelExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="org.yosneaker.store.dto.ModelExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from sneaker_model
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="org.yosneaker.store.dto.ModelExample" resultMap="BaseResultMap">
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.yosneaker.store.dto.ModelExample" >
     select
-    <if test="distinct">
+    <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
     from sneaker_model
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null">
+    <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
     <include refid="MysqlSuffix" />
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     ,
@@ -114,17 +114,17 @@
     from sneaker_model
     where model_id = #{modelId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sneaker_model
     where model_id = #{modelId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.yosneaker.store.dto.ModelExample">
+  <delete id="deleteByExample" parameterType="org.yosneaker.store.dto.ModelExample" >
     delete from sneaker_model
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.yosneaker.store.dto.Model">
+  <insert id="insert" parameterType="org.yosneaker.store.dto.Model" >
     insert into sneaker_model (model_id, model_name, model_series, 
       brand_id, Art_No, model_story
       )
@@ -132,82 +132,82 @@
       #{brandId,jdbcType=INTEGER}, #{artNo,jdbcType=VARCHAR}, #{modelStory,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.yosneaker.store.dto.Model">
+  <insert id="insertSelective" parameterType="org.yosneaker.store.dto.Model" >
     insert into sneaker_model
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="modelId != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="modelId != null" >
         model_id,
       </if>
-      <if test="modelName != null">
+      <if test="modelName != null" >
         model_name,
       </if>
-      <if test="modelSeries != null">
+      <if test="modelSeries != null" >
         model_series,
       </if>
-      <if test="brandId != null">
+      <if test="brandId != null" >
         brand_id,
       </if>
-      <if test="artNo != null">
+      <if test="artNo != null" >
         Art_No,
       </if>
-      <if test="modelStory != null">
+      <if test="modelStory != null" >
         model_story,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="modelId != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="modelId != null" >
         #{modelId,jdbcType=INTEGER},
       </if>
-      <if test="modelName != null">
+      <if test="modelName != null" >
         #{modelName,jdbcType=VARCHAR},
       </if>
-      <if test="modelSeries != null">
+      <if test="modelSeries != null" >
         #{modelSeries,jdbcType=VARCHAR},
       </if>
-      <if test="brandId != null">
+      <if test="brandId != null" >
         #{brandId,jdbcType=INTEGER},
       </if>
-      <if test="artNo != null">
+      <if test="artNo != null" >
         #{artNo,jdbcType=VARCHAR},
       </if>
-      <if test="modelStory != null">
+      <if test="modelStory != null" >
         #{modelStory,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.yosneaker.store.dto.ModelExample" resultType="java.lang.Integer">
+  <select id="countByExample" parameterType="org.yosneaker.store.dto.ModelExample" resultType="java.lang.Integer" >
     select count(*) from sneaker_model
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByExampleSelective" parameterType="map" >
     update sneaker_model
-    <set>
-      <if test="record.modelId != null">
+    <set >
+      <if test="record.modelId != null" >
         model_id = #{record.modelId,jdbcType=INTEGER},
       </if>
-      <if test="record.modelName != null">
+      <if test="record.modelName != null" >
         model_name = #{record.modelName,jdbcType=VARCHAR},
       </if>
-      <if test="record.modelSeries != null">
+      <if test="record.modelSeries != null" >
         model_series = #{record.modelSeries,jdbcType=VARCHAR},
       </if>
-      <if test="record.brandId != null">
+      <if test="record.brandId != null" >
         brand_id = #{record.brandId,jdbcType=INTEGER},
       </if>
-      <if test="record.artNo != null">
+      <if test="record.artNo != null" >
         Art_No = #{record.artNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.modelStory != null">
+      <if test="record.modelStory != null" >
         model_story = #{record.modelStory,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
     update sneaker_model
     set model_id = #{record.modelId,jdbcType=INTEGER},
       model_name = #{record.modelName,jdbcType=VARCHAR},
@@ -215,43 +215,43 @@
       brand_id = #{record.brandId,jdbcType=INTEGER},
       Art_No = #{record.artNo,jdbcType=VARCHAR},
       model_story = #{record.modelStory,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByExample" parameterType="map" >
     update sneaker_model
     set model_id = #{record.modelId,jdbcType=INTEGER},
       model_name = #{record.modelName,jdbcType=VARCHAR},
       model_series = #{record.modelSeries,jdbcType=VARCHAR},
       brand_id = #{record.brandId,jdbcType=INTEGER},
       Art_No = #{record.artNo,jdbcType=VARCHAR}
-    <if test="_parameter != null">
+    <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.yosneaker.store.dto.Model">
+  <update id="updateByPrimaryKeySelective" parameterType="org.yosneaker.store.dto.Model" >
     update sneaker_model
-    <set>
-      <if test="modelName != null">
+    <set >
+      <if test="modelName != null" >
         model_name = #{modelName,jdbcType=VARCHAR},
       </if>
-      <if test="modelSeries != null">
+      <if test="modelSeries != null" >
         model_series = #{modelSeries,jdbcType=VARCHAR},
       </if>
-      <if test="brandId != null">
+      <if test="brandId != null" >
         brand_id = #{brandId,jdbcType=INTEGER},
       </if>
-      <if test="artNo != null">
+      <if test="artNo != null" >
         Art_No = #{artNo,jdbcType=VARCHAR},
       </if>
-      <if test="modelStory != null">
+      <if test="modelStory != null" >
         model_story = #{modelStory,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where model_id = #{modelId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.yosneaker.store.dto.Model">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.yosneaker.store.dto.Model" >
     update sneaker_model
     set model_name = #{modelName,jdbcType=VARCHAR},
       model_series = #{modelSeries,jdbcType=VARCHAR},
@@ -260,7 +260,7 @@
       model_story = #{modelStory,jdbcType=LONGVARCHAR}
     where model_id = #{modelId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.yosneaker.store.dto.Model">
+  <update id="updateByPrimaryKey" parameterType="org.yosneaker.store.dto.Model" >
     update sneaker_model
     set model_name = #{modelName,jdbcType=VARCHAR},
       model_series = #{modelSeries,jdbcType=VARCHAR},
@@ -268,419 +268,8 @@
       Art_No = #{artNo,jdbcType=VARCHAR}
     where model_id = #{modelId,jdbcType=INTEGER}
   </update>
-  <sql id="MysqlSuffix">
-    <if test="page != null">
-      limit #{page.start} , #{page.rows}
-    </if>
-  </sql>
-  <resultMap id="BaseResultMap" type="org.yosneaker.store.dto.Model">
-    <id column="model_id" jdbcType="INTEGER" property="modelId" />
-    <result column="model_name" jdbcType="VARCHAR" property="modelName" />
-    <result column="model_series" jdbcType="VARCHAR" property="modelSeries" />
-    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
-    <result column="model_story" jdbcType="VARCHAR" property="modelStory" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    model_id, model_name, model_series, brand_id, model_story
-  </sql>
-  <select id="selectByExample" parameterType="org.yosneaker.store.dto.ModelExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from sneaker_model
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-    <include refid="MysqlSuffix" />
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sneaker_model
-    where model_id = #{modelId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sneaker_model
-    where model_id = #{modelId,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="org.yosneaker.store.dto.ModelExample">
-    delete from sneaker_model
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="org.yosneaker.store.dto.Model">
-    insert into sneaker_model (model_id, model_name, model_series, 
-      brand_id, model_story)
-    values (#{modelId,jdbcType=INTEGER}, #{modelName,jdbcType=VARCHAR}, #{modelSeries,jdbcType=VARCHAR}, 
-      #{brandId,jdbcType=INTEGER}, #{modelStory,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="org.yosneaker.store.dto.Model">
-    insert into sneaker_model
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="modelId != null">
-        model_id,
-      </if>
-      <if test="modelName != null">
-        model_name,
-      </if>
-      <if test="modelSeries != null">
-        model_series,
-      </if>
-      <if test="brandId != null">
-        brand_id,
-      </if>
-      <if test="modelStory != null">
-        model_story,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="modelId != null">
-        #{modelId,jdbcType=INTEGER},
-      </if>
-      <if test="modelName != null">
-        #{modelName,jdbcType=VARCHAR},
-      </if>
-      <if test="modelSeries != null">
-        #{modelSeries,jdbcType=VARCHAR},
-      </if>
-      <if test="brandId != null">
-        #{brandId,jdbcType=INTEGER},
-      </if>
-      <if test="modelStory != null">
-        #{modelStory,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="org.yosneaker.store.dto.ModelExample" resultType="java.lang.Integer">
-    select count(*) from sneaker_model
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update sneaker_model
-    <set>
-      <if test="record.modelId != null">
-        model_id = #{record.modelId,jdbcType=INTEGER},
-      </if>
-      <if test="record.modelName != null">
-        model_name = #{record.modelName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.modelSeries != null">
-        model_series = #{record.modelSeries,jdbcType=VARCHAR},
-      </if>
-      <if test="record.brandId != null">
-        brand_id = #{record.brandId,jdbcType=INTEGER},
-      </if>
-      <if test="record.modelStory != null">
-        model_story = #{record.modelStory,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update sneaker_model
-    set model_id = #{record.modelId,jdbcType=INTEGER},
-      model_name = #{record.modelName,jdbcType=VARCHAR},
-      model_series = #{record.modelSeries,jdbcType=VARCHAR},
-      brand_id = #{record.brandId,jdbcType=INTEGER},
-      model_story = #{record.modelStory,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.yosneaker.store.dto.Model">
-    update sneaker_model
-    <set>
-      <if test="modelName != null">
-        model_name = #{modelName,jdbcType=VARCHAR},
-      </if>
-      <if test="modelSeries != null">
-        model_series = #{modelSeries,jdbcType=VARCHAR},
-      </if>
-      <if test="brandId != null">
-        brand_id = #{brandId,jdbcType=INTEGER},
-      </if>
-      <if test="modelStory != null">
-        model_story = #{modelStory,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where model_id = #{modelId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.yosneaker.store.dto.Model">
-    update sneaker_model
-    set model_name = #{modelName,jdbcType=VARCHAR},
-      model_series = #{modelSeries,jdbcType=VARCHAR},
-      brand_id = #{brandId,jdbcType=INTEGER},
-      model_story = #{modelStory,jdbcType=VARCHAR}
-    where model_id = #{modelId,jdbcType=INTEGER}
-  </update>
-  <sql id="MysqlSuffix">
-    <if test="page != null">
-      limit #{page.start} , #{page.rows}
-    </if>
-  </sql>
-  <resultMap id="BaseResultMap" type="org.yosneaker.store.dto.Model">
-    <id column="model_id" jdbcType="INTEGER" property="modelId" />
-    <result column="model_name" jdbcType="VARCHAR" property="modelName" />
-    <result column="model_series" jdbcType="VARCHAR" property="modelSeries" />
-    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    model_id, model_name, model_series, brand_id
-  </sql>
-  <select id="selectByExample" parameterType="org.yosneaker.store.dto.ModelExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from sneaker_model
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-    <include refid="MysqlSuffix" />
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from sneaker_model
-    where model_id = #{modelId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sneaker_model
-    where model_id = #{modelId,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="org.yosneaker.store.dto.ModelExample">
-    delete from sneaker_model
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="org.yosneaker.store.dto.Model">
-    insert into sneaker_model (model_id, model_name, model_series, 
-      brand_id)
-    values (#{modelId,jdbcType=INTEGER}, #{modelName,jdbcType=VARCHAR}, #{modelSeries,jdbcType=VARCHAR}, 
-      #{brandId,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="org.yosneaker.store.dto.Model">
-    insert into sneaker_model
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="modelId != null">
-        model_id,
-      </if>
-      <if test="modelName != null">
-        model_name,
-      </if>
-      <if test="modelSeries != null">
-        model_series,
-      </if>
-      <if test="brandId != null">
-        brand_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="modelId != null">
-        #{modelId,jdbcType=INTEGER},
-      </if>
-      <if test="modelName != null">
-        #{modelName,jdbcType=VARCHAR},
-      </if>
-      <if test="modelSeries != null">
-        #{modelSeries,jdbcType=VARCHAR},
-      </if>
-      <if test="brandId != null">
-        #{brandId,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="org.yosneaker.store.dto.ModelExample" resultType="java.lang.Integer">
-    select count(*) from sneaker_model
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update sneaker_model
-    <set>
-      <if test="record.modelId != null">
-        model_id = #{record.modelId,jdbcType=INTEGER},
-      </if>
-      <if test="record.modelName != null">
-        model_name = #{record.modelName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.modelSeries != null">
-        model_series = #{record.modelSeries,jdbcType=VARCHAR},
-      </if>
-      <if test="record.brandId != null">
-        brand_id = #{record.brandId,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update sneaker_model
-    set model_id = #{record.modelId,jdbcType=INTEGER},
-      model_name = #{record.modelName,jdbcType=VARCHAR},
-      model_series = #{record.modelSeries,jdbcType=VARCHAR},
-      brand_id = #{record.brandId,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.yosneaker.store.dto.Model">
-    update sneaker_model
-    <set>
-      <if test="modelName != null">
-        model_name = #{modelName,jdbcType=VARCHAR},
-      </if>
-      <if test="modelSeries != null">
-        model_series = #{modelSeries,jdbcType=VARCHAR},
-      </if>
-      <if test="brandId != null">
-        brand_id = #{brandId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where model_id = #{modelId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.yosneaker.store.dto.Model">
-    update sneaker_model
-    set model_name = #{modelName,jdbcType=VARCHAR},
-      model_series = #{modelSeries,jdbcType=VARCHAR},
-      brand_id = #{brandId,jdbcType=INTEGER}
-    where model_id = #{modelId,jdbcType=INTEGER}
-  </update>
-  <sql id="MysqlSuffix">
-    <if test="page != null">
+  <sql id="MysqlSuffix" >
+    <if test="page != null" >
       limit #{page.start} , #{page.rows}
     </if>
   </sql>

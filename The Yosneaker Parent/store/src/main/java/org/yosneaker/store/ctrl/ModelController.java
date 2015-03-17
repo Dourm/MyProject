@@ -22,9 +22,9 @@ import org.yosneaker.store.dto.ModelExample;
 import org.yosneaker.store.service.IModelService;
 
 /**
- * 类描述:型号
+ * 类描述:Model
  * 创建人:Rainy
- * 创建时间:2015-03-17 21:52:55
+ * 创建时间:2015-03-17 22:12:20
  * @version
  */
 @Controller
@@ -33,9 +33,9 @@ public class ModelController extends BaseController{
 	private final static Logger logger = Logger.getLogger(ModelController.class);
 	
 	@Resource
-    IModelService modelService;//型号
+    IModelService modelService;//Model
 	/**
-	 * 获取型号列表
+	 * 获取Model列表
 	 * @param record
 	 
 	 

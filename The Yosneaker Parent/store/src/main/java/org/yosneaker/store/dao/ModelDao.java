@@ -6,9 +6,9 @@ import org.yosneaker.store.dto.Model;
 import org.yosneaker.store.dto.ModelExample;
 import org.yosneaker.store.common.SimpleMybatisSupport;
 /**
- * 类描述:型号
+ * 类描述:Model
  * 创建人:Rainy
- * 创建时间:2015-03-17 21:52:55
+ * 创建时间:2015-03-17 22:12:20
  * @version
  */
  

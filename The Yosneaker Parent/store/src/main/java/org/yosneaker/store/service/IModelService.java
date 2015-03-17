@@ -1,15 +1,15 @@
 package org.yosneaker.store.service;
 
 import java.util.List;
+
 import org.yosneaker.store.dto.Model;
 import org.yosneaker.store.dto.ModelExample;
-import org.yosneaker.store.common.Page;
 
 /**
  * 类名称:IModelService<br/>
- * 类描述:型号<br/>
+ * 类描述:Model<br/>
  * 创建人:Rainy<br/>
- * 创建时间:2015-03-17 21:52:55<br/>
+ * 创建时间:2015-03-17 22:12:20<br/>
  * @version
  */
 public interface IModelService {
@@ -27,7 +27,7 @@ public interface IModelService {
 	 */
 	public boolean delete(Integer id);
 	/**
-	 * 获取型号类型
+	 * 获取Model类型
 	 * @param example
 	 * @return
 	 */

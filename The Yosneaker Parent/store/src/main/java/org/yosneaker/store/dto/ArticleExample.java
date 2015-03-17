@@ -3,7 +3,6 @@ package org.yosneaker.store.dto;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.yosneaker.store.common.Page;
 
 public class ArticleExample {
@@ -997,6 +996,146 @@ public class ArticleExample {
             return (Criteria) this;
         }
 
+        public Criteria andArticleBrandIsNull() {
+            addCriterion("article_brand is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandIsNotNull() {
+            addCriterion("article_brand is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandEqualTo(String value) {
+            addCriterion("article_brand =", value, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandNotEqualTo(String value) {
+            addCriterion("article_brand <>", value, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandGreaterThan(String value) {
+            addCriterion("article_brand >", value, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandGreaterThanOrEqualTo(String value) {
+            addCriterion("article_brand >=", value, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandLessThan(String value) {
+            addCriterion("article_brand <", value, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandLessThanOrEqualTo(String value) {
+            addCriterion("article_brand <=", value, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandLike(String value) {
+            addCriterion("article_brand like", value, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandNotLike(String value) {
+            addCriterion("article_brand not like", value, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandIn(List<String> values) {
+            addCriterion("article_brand in", values, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandNotIn(List<String> values) {
+            addCriterion("article_brand not in", values, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandBetween(String value1, String value2) {
+            addCriterion("article_brand between", value1, value2, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandNotBetween(String value1, String value2) {
+            addCriterion("article_brand not between", value1, value2, "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelIsNull() {
+            addCriterion("article_model is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelIsNotNull() {
+            addCriterion("article_model is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelEqualTo(String value) {
+            addCriterion("article_model =", value, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelNotEqualTo(String value) {
+            addCriterion("article_model <>", value, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelGreaterThan(String value) {
+            addCriterion("article_model >", value, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelGreaterThanOrEqualTo(String value) {
+            addCriterion("article_model >=", value, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelLessThan(String value) {
+            addCriterion("article_model <", value, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelLessThanOrEqualTo(String value) {
+            addCriterion("article_model <=", value, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelLike(String value) {
+            addCriterion("article_model like", value, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelNotLike(String value) {
+            addCriterion("article_model not like", value, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelIn(List<String> values) {
+            addCriterion("article_model in", values, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelNotIn(List<String> values) {
+            addCriterion("article_model not in", values, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelBetween(String value1, String value2) {
+            addCriterion("article_model between", value1, value2, "articleModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelNotBetween(String value1, String value2) {
+            addCriterion("article_model not between", value1, value2, "articleModel");
+            return (Criteria) this;
+        }
+
         public Criteria andArticleTitleLikeInsensitive(String value) {
             addCriterion("upper(article_title) like", value.toUpperCase(), "articleTitle");
             return (Criteria) this;
@@ -1014,6 +1153,16 @@ public class ArticleExample {
 
         public Criteria andArticleImagesLikeInsensitive(String value) {
             addCriterion("upper(article_images) like", value.toUpperCase(), "articleImages");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleBrandLikeInsensitive(String value) {
+            addCriterion("upper(article_brand) like", value.toUpperCase(), "articleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleModelLikeInsensitive(String value) {
+            addCriterion("upper(article_model) like", value.toUpperCase(), "articleModel");
             return (Criteria) this;
         }
     }

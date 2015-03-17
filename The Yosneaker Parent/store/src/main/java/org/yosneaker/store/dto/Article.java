@@ -1,7 +1,6 @@
 package org.yosneaker.store.dto;
 
 import java.util.Date;
-import java.util.List;
 
 public class Article {
     private Integer articleId;
@@ -32,17 +31,11 @@ public class Article {
 
     private Integer articleModelId;
 
-    private List<ArticleItem> items;
-    
-    public List<ArticleItem> getItems() {
-		return items;
-	}
+    private String articleBrand;
 
-	public void setItems(List<ArticleItem> items) {
-		this.items = items;
-	}
+    private String articleModel;
 
-	public Integer getArticleId() {
+    public Integer getArticleId() {
         return articleId;
     }
 
@@ -152,5 +145,21 @@ public class Article {
 
     public void setArticleModelId(Integer articleModelId) {
         this.articleModelId = articleModelId;
+    }
+
+    public String getArticleBrand() {
+        return articleBrand;
+    }
+
+    public void setArticleBrand(String articleBrand) {
+        this.articleBrand = articleBrand == null ? null : articleBrand.trim();
+    }
+
+    public String getArticleModel() {
+        return articleModel;
+    }
+
+    public void setArticleModel(String articleModel) {
+        this.articleModel = articleModel == null ? null : articleModel.trim();
     }
 }
