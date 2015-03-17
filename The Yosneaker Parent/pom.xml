@@ -88,6 +88,6 @@
   	<module>store</module>
   	<module>admin</module>
   	<module>sdk</module>
-  	<module>api</module>
+  	
   </modules>
 </project>
