@@ -114,7 +114,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.yosneaker.store.dto.Article">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="articleId" parameterType="org.yosneaker.store.dto.Article">
     insert into sneaker_article (article_id, article_title, article_description, 
       article_comment, article_level, article_images, 
       article_author_id, article_create_time, article_read_count, 
@@ -130,7 +130,7 @@
       #{articleModelId,jdbcType=INTEGER}, #{articleBrand,jdbcType=VARCHAR}, #{articleModel,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.yosneaker.store.dto.Article">
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="articleId" parameterType="org.yosneaker.store.dto.Article">
     insert into sneaker_article
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="articleId != null">

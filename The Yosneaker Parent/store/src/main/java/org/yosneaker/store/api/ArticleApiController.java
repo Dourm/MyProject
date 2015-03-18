@@ -1,18 +1,28 @@
 package org.yosneaker.store.api;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.yosneaker.store.BaseController;
 import org.yosneaker.store.ResponseState;
+import org.yosneaker.store.common.Page;
+import org.yosneaker.store.dto.Article;
 import org.yosneaker.store.service.ArticleService;
 import org.yosneaker.store.service.ICommentService;
+import org.yosneaker.store.vo.ArticleDetails;
 import org.yosneaker.store.vo.ArticleVo;
+
+import com.google.common.collect.Maps;
 
 /**
  * 类描述:测评管理
@@ -54,6 +64,55 @@ public class ArticleApiController extends BaseController{
 		}
 		return state;
 	}
+	
+	/**
+	 * 获取热门测评列表
+	 * @param record
+	 
+	 
+	 * @param page
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/public",method=RequestMethod.GET)
+	public @ResponseBody
+	Object getListPage(Page page,HttpServletRequest request) {
+		int total = 0;
+		List<Article> list = new ArrayList<Article>();
+		Map<String,Object> result = Maps.newHashMap();
+		try{
+			//统计数量
+			total = articleServiceImpl.count();
+			if(total>0){
+				list = articleServiceImpl.getPublicList(page);
+			}
+			result.put("articles", list);
+			result.put("total", total);
+		}catch (Exception e) {
+			logger.error("error", e);
+		}
+		return result;
+	}
+	
+	/**
+	 * 根据id获取详情
+	 * @param record
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}",method=RequestMethod.GET)
+	public @ResponseBody
+	Object show(@PathVariable int id,HttpServletRequest request) {
+		ResponseState state = new ResponseState(false,"");
+		try{			
+			ArticleDetails article = articleServiceImpl.getDetailsById(id);
+			return article;
+		}catch (Exception e) {
+			logger.error("error", e);
+		}
+		return state;
+	}
+	
 	/**
 	 * 删除记录
 	 * @param record
@@ -139,36 +198,5 @@ public class ArticleApiController extends BaseController{
 	}
 	
 	
-	*//**
-	 * 获取热门测评列表
-	 * @param record
-	 
-	 
-	 * @param page
-	 * @param request
-	 * @return
-	 *//*
-	@RequestMapping(value = "/public",method=RequestMethod.GET)
-	public @ResponseBody
-	Object getListPage(Article record,Page page,HttpServletRequest request) {
-		int total = 0;
-		List<Article> list = new ArrayList<Article>();
-		Map<String,Object> result = Maps.newHashMap();
-		try{
-				查询条件    
-			ArticleExample example = new ArticleExample();
-			example.setPage(page);
-			
-			//统计数量
-			total = articleService.countByExample(example);
-			if(total>0){
-				list = articleService.getList(example);
-			}
-			result.put("articles", list);
-			result.put("total", total);
-		}catch (Exception e) {
-			logger.error("error", e);
-		}
-		return result;
-	}*/
+	*/
 }
