@@ -16,6 +16,8 @@ public class Comment {
     private Integer articleCommentToUserId;
 
     private Integer articleCommentTopNumber;
+    
+    private Account account;
 
     public Integer getArticleCommentId() {
         return articleCommentId;
@@ -72,4 +74,12 @@ public class Comment {
     public void setArticleCommentTopNumber(Integer articleCommentTopNumber) {
         this.articleCommentTopNumber = articleCommentTopNumber;
     }
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 }

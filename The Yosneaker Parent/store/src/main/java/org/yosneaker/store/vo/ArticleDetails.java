@@ -2,7 +2,7 @@ package org.yosneaker.store.vo;
 
 import java.util.List;
 
-import org.yosneaker.store.dto.AccountInfo;
+import org.yosneaker.store.dto.Account;
 import org.yosneaker.store.dto.Article;
 import org.yosneaker.store.dto.ArticleItem;
 import org.yosneaker.store.dto.Brand;
@@ -16,11 +16,13 @@ public class ArticleDetails {
 	
 	private	Brand brand;
 	
-	private AccountInfo authorInfo;
+	private Account authorInfo;
 	
 	private List<ArticleItem> items;
 	
 	private List<Comment> hotCommonts;
+	
+	private IntentionInfo intendInfo;
 
 	public Article getArticle() {
 		return article;
@@ -46,11 +48,12 @@ public class ArticleDetails {
 		this.brand = brand;
 	}
 
-	public AccountInfo getAuthorInfo() {
+
+	public Account getAuthorInfo() {
 		return authorInfo;
 	}
 
-	public void setAuthorInfo(AccountInfo authorInfo) {
+	public void setAuthorInfo(Account authorInfo) {
 		this.authorInfo = authorInfo;
 	}
 
@@ -68,6 +71,14 @@ public class ArticleDetails {
 
 	public void setHotCommonts(List<Comment> hotCommonts) {
 		this.hotCommonts = hotCommonts;
+	}
+
+	public IntentionInfo getIntendInfo() {
+		return intendInfo;
+	}
+
+	public void setIntendInfo(IntentionInfo intendInfo) {
+		this.intendInfo = intendInfo;
 	}
 	
 	

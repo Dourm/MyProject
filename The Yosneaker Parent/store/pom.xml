@@ -12,6 +12,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	<build>
+	    <finalName>store</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>

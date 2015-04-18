@@ -9,6 +9,7 @@
     <result column="article_comment_publish_time" property="articleCommentPublishTime" jdbcType="TIMESTAMP" />
     <result column="article_comment_to_user_id" property="articleCommentToUserId" jdbcType="INTEGER" />
     <result column="article_comment_top_number" property="articleCommentTopNumber" jdbcType="INTEGER" />
+    <association property="accountInfo" column="article_comment_account_id" select="org.yosneaker.store.dao.AccountDao.selectByPrimaryKey"/>  
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

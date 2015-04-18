@@ -17,6 +17,8 @@ import org.yosneaker.store.BaseController;
 import org.yosneaker.store.ResponseState;
 import org.yosneaker.store.common.Page;
 import org.yosneaker.store.dto.Article;
+import org.yosneaker.store.dto.Comment;
+import org.yosneaker.store.dto.CommentExample;
 import org.yosneaker.store.service.ArticleService;
 import org.yosneaker.store.service.ICommentService;
 import org.yosneaker.store.vo.ArticleDetails;
@@ -113,6 +115,33 @@ public class ArticleApiController extends BaseController{
 		return state;
 	}
 	
+	
+	/**
+	 * 根据帖子ID获取评论列表
+	 * @param record
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}/comments",method=RequestMethod.GET)
+	public @ResponseBody
+	Object getCommentsByArticleId(Page page,@PathVariable int id,HttpServletRequest request) {
+		ResponseState state = new ResponseState(false,"");
+		Map<String,Object> result = Maps.newHashMap();
+		List<Comment> comments;
+		try{	
+			CommentExample commentExample = new CommentExample();
+			commentExample.createCriteria().andArticleCommentArticleIdEqualTo(id);
+			int total = commentService.countByExample(commentExample);
+			commentExample.setPage(page);
+			comments = commentService.getList(commentExample);
+			result.put("total", total);
+			result.put("comments",comments);
+			return result;
+		}catch (Exception e) {
+			logger.error("error", e);
+		}
+		return state;
+	}
 	/**
 	 * 删除记录
 	 * @param record
