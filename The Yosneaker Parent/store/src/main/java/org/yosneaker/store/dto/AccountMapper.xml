@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.yosneaker.store.dao.AccountMapper">
+  <resultMap id="BaseResultMap" type="org.yosneaker.store.dto.Account">
+    <id column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="account_username" jdbcType="VARCHAR" property="accountUsername" />
+    <result column="account_remark" jdbcType="VARCHAR" property="accountRemark" />
+    <result column="account_qq" jdbcType="VARCHAR" property="accountQq" />
+    <result column="account_telephone" jdbcType="VARCHAR" property="accountTelephone" />
+    <result column="account_email" jdbcType="VARCHAR" property="accountEmail" />
+    <result column="account_sex" jdbcType="INTEGER" property="accountSex" />
+    <result column="account_images" jdbcType="VARCHAR" property="accountImages" />
+    <result column="account_area" jdbcType="VARCHAR" property="accountArea" />
+    <result column="account_password" jdbcType="VARCHAR" property="accountPassword" />
+    <result column="account_province" jdbcType="VARCHAR" property="accountProvince" />
+    <result column="account_city" jdbcType="VARCHAR" property="accountCity" />
+    <result column="account_city_id" jdbcType="INTEGER" property="accountCityId" />
+    <result column="account_province_id" jdbcType="INTEGER" property="accountProvinceId" />
+    <result column="account_create_time" jdbcType="TIMESTAMP" property="accountCreateTime" />
+    <result column="account_stature" jdbcType="REAL" property="accountStature" />
+    <result column="account_age" jdbcType="INTEGER" property="accountAge" />
+    <result column="account_weight" jdbcType="REAL" property="accountWeight" />
+    <result column="account_bounce" jdbcType="REAL" property="accountBounce" />
+    <result column="account_position" jdbcType="VARCHAR" property="accountPosition" />
+    <result column="account_ability" jdbcType="VARCHAR" property="accountAbility" />
+    <result column="account_thrid_part_id" jdbcType="VARCHAR" property="accountThridPartId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    account_id, account_name, account_username, account_remark, account_qq, account_telephone, 
+    account_email, account_sex, account_images, account_area, account_password, account_province, 
+    account_city, account_city_id, account_province_id, account_create_time, account_stature, 
+    account_age, account_weight, account_bounce, account_position, account_ability, account_thrid_part_id
+  </sql>
+  <select id="selectByExample" parameterType="org.yosneaker.store.dto.AccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sneaker_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="MysqlSuffix" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sneaker_account
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sneaker_account
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.yosneaker.store.dto.AccountExample">
+    delete from sneaker_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.yosneaker.store.dto.Account">
+    insert into sneaker_account (account_id, account_name, account_username, 
+      account_remark, account_qq, account_telephone, 
+      account_email, account_sex, account_images, 
+      account_area, account_password, account_province, 
+      account_city, account_city_id, account_province_id, 
+      account_create_time, account_stature, account_age, 
+      account_weight, account_bounce, account_position, 
+      account_ability, account_thrid_part_id)
+    values (#{accountId,jdbcType=INTEGER}, #{accountName,jdbcType=VARCHAR}, #{accountUsername,jdbcType=VARCHAR}, 
+      #{accountRemark,jdbcType=VARCHAR}, #{accountQq,jdbcType=VARCHAR}, #{accountTelephone,jdbcType=VARCHAR}, 
+      #{accountEmail,jdbcType=VARCHAR}, #{accountSex,jdbcType=INTEGER}, #{accountImages,jdbcType=VARCHAR}, 
+      #{accountArea,jdbcType=VARCHAR}, #{accountPassword,jdbcType=VARCHAR}, #{accountProvince,jdbcType=VARCHAR}, 
+      #{accountCity,jdbcType=VARCHAR}, #{accountCityId,jdbcType=INTEGER}, #{accountProvinceId,jdbcType=INTEGER}, 
+      #{accountCreateTime,jdbcType=TIMESTAMP}, #{accountStature,jdbcType=REAL}, #{accountAge,jdbcType=INTEGER}, 
+      #{accountWeight,jdbcType=REAL}, #{accountBounce,jdbcType=REAL}, #{accountPosition,jdbcType=VARCHAR}, 
+      #{accountAbility,jdbcType=VARCHAR}, #{accountThridPartId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.yosneaker.store.dto.Account">
+    insert into sneaker_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="accountUsername != null">
+        account_username,
+      </if>
+      <if test="accountRemark != null">
+        account_remark,
+      </if>
+      <if test="accountQq != null">
+        account_qq,
+      </if>
+      <if test="accountTelephone != null">
+        account_telephone,
+      </if>
+      <if test="accountEmail != null">
+        account_email,
+      </if>
+      <if test="accountSex != null">
+        account_sex,
+      </if>
+      <if test="accountImages != null">
+        account_images,
+      </if>
+      <if test="accountArea != null">
+        account_area,
+      </if>
+      <if test="accountPassword != null">
+        account_password,
+      </if>
+      <if test="accountProvince != null">
+        account_province,
+      </if>
+      <if test="accountCity != null">
+        account_city,
+      </if>
+      <if test="accountCityId != null">
+        account_city_id,
+      </if>
+      <if test="accountProvinceId != null">
+        account_province_id,
+      </if>
+      <if test="accountCreateTime != null">
+        account_create_time,
+      </if>
+      <if test="accountStature != null">
+        account_stature,
+      </if>
+      <if test="accountAge != null">
+        account_age,
+      </if>
+      <if test="accountWeight != null">
+        account_weight,
+      </if>
+      <if test="accountBounce != null">
+        account_bounce,
+      </if>
+      <if test="accountPosition != null">
+        account_position,
+      </if>
+      <if test="accountAbility != null">
+        account_ability,
+      </if>
+      <if test="accountThridPartId != null">
+        account_thrid_part_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountUsername != null">
+        #{accountUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="accountRemark != null">
+        #{accountRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountQq != null">
+        #{accountQq,jdbcType=VARCHAR},
+      </if>
+      <if test="accountTelephone != null">
+        #{accountTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="accountEmail != null">
+        #{accountEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="accountSex != null">
+        #{accountSex,jdbcType=INTEGER},
+      </if>
+      <if test="accountImages != null">
+        #{accountImages,jdbcType=VARCHAR},
+      </if>
+      <if test="accountArea != null">
+        #{accountArea,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPassword != null">
+        #{accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="accountProvince != null">
+        #{accountProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCity != null">
+        #{accountCity,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCityId != null">
+        #{accountCityId,jdbcType=INTEGER},
+      </if>
+      <if test="accountProvinceId != null">
+        #{accountProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="accountCreateTime != null">
+        #{accountCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountStature != null">
+        #{accountStature,jdbcType=REAL},
+      </if>
+      <if test="accountAge != null">
+        #{accountAge,jdbcType=INTEGER},
+      </if>
+      <if test="accountWeight != null">
+        #{accountWeight,jdbcType=REAL},
+      </if>
+      <if test="accountBounce != null">
+        #{accountBounce,jdbcType=REAL},
+      </if>
+      <if test="accountPosition != null">
+        #{accountPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="accountAbility != null">
+        #{accountAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="accountThridPartId != null">
+        #{accountThridPartId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.yosneaker.store.dto.AccountExample" resultType="java.lang.Integer">
+    select count(*) from sneaker_account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sneaker_account
+    <set>
+      <if test="record.accountId != null">
+        account_id = #{record.accountId,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountName != null">
+        account_name = #{record.accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountUsername != null">
+        account_username = #{record.accountUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountRemark != null">
+        account_remark = #{record.accountRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountQq != null">
+        account_qq = #{record.accountQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountTelephone != null">
+        account_telephone = #{record.accountTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountEmail != null">
+        account_email = #{record.accountEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountSex != null">
+        account_sex = #{record.accountSex,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountImages != null">
+        account_images = #{record.accountImages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountArea != null">
+        account_area = #{record.accountArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountPassword != null">
+        account_password = #{record.accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountProvince != null">
+        account_province = #{record.accountProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountCity != null">
+        account_city = #{record.accountCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountCityId != null">
+        account_city_id = #{record.accountCityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountProvinceId != null">
+        account_province_id = #{record.accountProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountCreateTime != null">
+        account_create_time = #{record.accountCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accountStature != null">
+        account_stature = #{record.accountStature,jdbcType=REAL},
+      </if>
+      <if test="record.accountAge != null">
+        account_age = #{record.accountAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.accountWeight != null">
+        account_weight = #{record.accountWeight,jdbcType=REAL},
+      </if>
+      <if test="record.accountBounce != null">
+        account_bounce = #{record.accountBounce,jdbcType=REAL},
+      </if>
+      <if test="record.accountPosition != null">
+        account_position = #{record.accountPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountAbility != null">
+        account_ability = #{record.accountAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountThridPartId != null">
+        account_thrid_part_id = #{record.accountThridPartId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sneaker_account
+    set account_id = #{record.accountId,jdbcType=INTEGER},
+      account_name = #{record.accountName,jdbcType=VARCHAR},
+      account_username = #{record.accountUsername,jdbcType=VARCHAR},
+      account_remark = #{record.accountRemark,jdbcType=VARCHAR},
+      account_qq = #{record.accountQq,jdbcType=VARCHAR},
+      account_telephone = #{record.accountTelephone,jdbcType=VARCHAR},
+      account_email = #{record.accountEmail,jdbcType=VARCHAR},
+      account_sex = #{record.accountSex,jdbcType=INTEGER},
+      account_images = #{record.accountImages,jdbcType=VARCHAR},
+      account_area = #{record.accountArea,jdbcType=VARCHAR},
+      account_password = #{record.accountPassword,jdbcType=VARCHAR},
+      account_province = #{record.accountProvince,jdbcType=VARCHAR},
+      account_city = #{record.accountCity,jdbcType=VARCHAR},
+      account_city_id = #{record.accountCityId,jdbcType=INTEGER},
+      account_province_id = #{record.accountProvinceId,jdbcType=INTEGER},
+      account_create_time = #{record.accountCreateTime,jdbcType=TIMESTAMP},
+      account_stature = #{record.accountStature,jdbcType=REAL},
+      account_age = #{record.accountAge,jdbcType=INTEGER},
+      account_weight = #{record.accountWeight,jdbcType=REAL},
+      account_bounce = #{record.accountBounce,jdbcType=REAL},
+      account_position = #{record.accountPosition,jdbcType=VARCHAR},
+      account_ability = #{record.accountAbility,jdbcType=VARCHAR},
+      account_thrid_part_id = #{record.accountThridPartId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.yosneaker.store.dto.Account">
+    update sneaker_account
+    <set>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountUsername != null">
+        account_username = #{accountUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="accountRemark != null">
+        account_remark = #{accountRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="accountQq != null">
+        account_qq = #{accountQq,jdbcType=VARCHAR},
+      </if>
+      <if test="accountTelephone != null">
+        account_telephone = #{accountTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="accountEmail != null">
+        account_email = #{accountEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="accountSex != null">
+        account_sex = #{accountSex,jdbcType=INTEGER},
+      </if>
+      <if test="accountImages != null">
+        account_images = #{accountImages,jdbcType=VARCHAR},
+      </if>
+      <if test="accountArea != null">
+        account_area = #{accountArea,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPassword != null">
+        account_password = #{accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="accountProvince != null">
+        account_province = #{accountProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCity != null">
+        account_city = #{accountCity,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCityId != null">
+        account_city_id = #{accountCityId,jdbcType=INTEGER},
+      </if>
+      <if test="accountProvinceId != null">
+        account_province_id = #{accountProvinceId,jdbcType=INTEGER},
+      </if>
+      <if test="accountCreateTime != null">
+        account_create_time = #{accountCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountStature != null">
+        account_stature = #{accountStature,jdbcType=REAL},
+      </if>
+      <if test="accountAge != null">
+        account_age = #{accountAge,jdbcType=INTEGER},
+      </if>
+      <if test="accountWeight != null">
+        account_weight = #{accountWeight,jdbcType=REAL},
+      </if>
+      <if test="accountBounce != null">
+        account_bounce = #{accountBounce,jdbcType=REAL},
+      </if>
+      <if test="accountPosition != null">
+        account_position = #{accountPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="accountAbility != null">
+        account_ability = #{accountAbility,jdbcType=VARCHAR},
+      </if>
+      <if test="accountThridPartId != null">
+        account_thrid_part_id = #{accountThridPartId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.yosneaker.store.dto.Account">
+    update sneaker_account
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      account_username = #{accountUsername,jdbcType=VARCHAR},
+      account_remark = #{accountRemark,jdbcType=VARCHAR},
+      account_qq = #{accountQq,jdbcType=VARCHAR},
+      account_telephone = #{accountTelephone,jdbcType=VARCHAR},
+      account_email = #{accountEmail,jdbcType=VARCHAR},
+      account_sex = #{accountSex,jdbcType=INTEGER},
+      account_images = #{accountImages,jdbcType=VARCHAR},
+      account_area = #{accountArea,jdbcType=VARCHAR},
+      account_password = #{accountPassword,jdbcType=VARCHAR},
+      account_province = #{accountProvince,jdbcType=VARCHAR},
+      account_city = #{accountCity,jdbcType=VARCHAR},
+      account_city_id = #{accountCityId,jdbcType=INTEGER},
+      account_province_id = #{accountProvinceId,jdbcType=INTEGER},
+      account_create_time = #{accountCreateTime,jdbcType=TIMESTAMP},
+      account_stature = #{accountStature,jdbcType=REAL},
+      account_age = #{accountAge,jdbcType=INTEGER},
+      account_weight = #{accountWeight,jdbcType=REAL},
+      account_bounce = #{accountBounce,jdbcType=REAL},
+      account_position = #{accountPosition,jdbcType=VARCHAR},
+      account_ability = #{accountAbility,jdbcType=VARCHAR},
+      account_thrid_part_id = #{accountThridPartId,jdbcType=VARCHAR}
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </update>
+  <sql id="MysqlSuffix">
+    <if test="page != null">
+      limit #{page.start} , #{page.rows}
+    </if>
+  </sql>
+</mapper>
