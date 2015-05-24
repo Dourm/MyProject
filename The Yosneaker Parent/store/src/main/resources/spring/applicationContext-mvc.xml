@@ -43,7 +43,8 @@
                 <list> 
                     <value>WriteMapNullValue</value> 
                     <value>QuoteFieldNames</value>
-                    <value>WriteDateUseDateFormat</value>  
+                    <value>WriteDateUseDateFormat</value> 
+                    <value>DisableCircularReferenceDetect</value>   
                 </list> 
             </property>      
 	</bean>

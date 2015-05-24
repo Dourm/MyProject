@@ -5,7 +5,7 @@
     <id column="intention_model_id" property="intentionModelId" jdbcType="INTEGER" />
     <id column="intention_account_id" property="intentionAccountId" jdbcType="INTEGER" />
     <result column="intention_article_type" property="intentionArticleType" jdbcType="INTEGER" />
-    <association property="account" column="intention_account_id" select="org.yosneaker.store.dao.AccountDao.selectByPrimaryKey"/>  
+    <association property="account" column="intention_account_id"  select="org.yosneaker.store.dao.AccountMapper.selectByPrimaryKey"/>  
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

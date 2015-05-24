@@ -108,7 +108,6 @@ public class ArticleServiceImpl  implements ArticleService {
 		commentExample.createCriteria().andArticleCommentArticleIdEqualTo(id);
 		commentExample.setOrderByClause("article_comment_top_number desc");
 		Page page = new Page();
-		page.setStart(1);
 		page.setRows(3);
 		commentExample.setPage(page);
 		List<Comment> hotCommonts = commentDao.selectByExample(commentExample);
@@ -122,7 +121,6 @@ public class ArticleServiceImpl  implements ArticleService {
 		/////xiang
 		IntentionInfo info = new IntentionInfo();
 		Page ipage = new Page();
-		ipage.setStart(1);
 		ipage.setRows(8);
 		IntentionExample wantExample = new IntentionExample();
 		wantExample.createCriteria().andIntentionModelIdEqualTo(article.getArticleModelId()).andIntentionArticleTypeEqualTo(IntentionType.WANT.getValue());
@@ -144,7 +142,7 @@ public class ArticleServiceImpl  implements ArticleService {
 		///have
 		IntentionExample buyExample = new IntentionExample();
 		buyExample.createCriteria().andIntentionModelIdEqualTo(article.getArticleModelId()).andIntentionArticleTypeEqualTo(IntentionType.BUY.getValue());
-		info.setWantCount(intentionDao.countByExample(buyExample));
+		info.setBuyCount(intentionDao.countByExample(buyExample));
 		
 		buyExample.setPage(ipage);
 		
